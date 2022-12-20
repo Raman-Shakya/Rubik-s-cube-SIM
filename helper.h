@@ -1,7 +1,8 @@
+#pragma once
+
 #include <iostream>
 #include <map>
 #include <string>
-#pragma once
 
 
 std::map<char, std::string> color_palette;

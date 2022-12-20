@@ -1,7 +1,8 @@
+#pragma once
+
 #include "cube.h"
 #include "helper.h"
 #include "edge_sticker_map.h"
-#pragma once
 
 
 void Cube::rotate_face_clockwise(char move) {

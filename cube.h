@@ -1,6 +1,7 @@
+#pragma once
+
 #include <iostream>
 #include "helper.h"
-#pragma once
 
 
 class Cube {
@@ -33,25 +34,34 @@ public:
 
 
 
+    bool is_solved() {
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<12; j++) {
+                if(grid[i][j]!=solved_grid[i][j]) return false;
+            }
+        }
+        return true;
+    }
 
 
 
 private:
+    char solved_grid[9][13] = {
+        "   WWW      ",
+        "   WWW      ",
+        "   WWW      ",
+        "OOOGGGRRRBBB",
+        "OOOGGGRRRBBB",
+        "OOOGGGRRRBBB",
+        "   YYY      ",
+        "   YYY      ",
+        "   YYY      ",
+    };
+
     void reset_to_solved_state() {
-        char temp_grid_solved[9][13] = {
-            "   WWW      ",
-            "   WWW      ",
-            "   WWW      ",
-            "OOOGGGRRRBBB",
-            "OOOGGGRRRBBB",
-            "OOOGGGRRRBBB",
-            "   YYY      ",
-            "   YYY      ",
-            "   YYY      ",
-        };
         for (int i=0; i<9; i++) {
             for (int j=0; j<12; j++) {
-                grid[i][j] = temp_grid_solved[i][j];
+                grid[i][j] = solved_grid[i][j];
             }
         }
     }

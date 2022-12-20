@@ -1,6 +1,7 @@
+#pragma once
+
 #include <map>
 #include <vector>
-#pragma once
 
 std::map<char, std::vector<std::vector<int>>> rotation_edge_map;
 std::map<char, std::vector<int>> center_coor;
