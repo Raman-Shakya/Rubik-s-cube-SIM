@@ -5,6 +5,7 @@
 
 std::map<char, std::vector<std::vector<int>>> rotation_edge_map;
 std::map<char, std::vector<int>> center_coor;
+std::map<std::vector<int>, std::vector<int>> connected_coor_edge;
 
 void set_rotation_edge_map_data() {
     rotation_edge_map['F'] = {
@@ -50,4 +51,24 @@ void set_rotation_edge_map_data() {
     center_coor['L'] = {4,1};
     center_coor['U'] = {1,4};
     center_coor['D'] = {7,4};
+
+
+    connected_coor_edge[{3,1}]={1,3};
+    connected_coor_edge[{3,4}]={2,4};
+    connected_coor_edge[{3,7}]={1,5};
+    connected_coor_edge[{3,10}]={0,4};
+
+    connected_coor_edge[{5,1}]={7,3};
+    connected_coor_edge[{5,4}]={6,4};
+    connected_coor_edge[{5,7}]={7,5};
+    connected_coor_edge[{5,10}]={8,4};
+
+    connected_coor_edge[{4,3}]={4,2};
+    connected_coor_edge[{4,5}]={4,6};
+    connected_coor_edge[{4,8}]={4,9};
+    connected_coor_edge[{4,0}]={4,11};
+
+    for (const auto& key : connected_coor_edge) {
+        connected_coor_edge[key.second] = key.first;
+    }
 }
