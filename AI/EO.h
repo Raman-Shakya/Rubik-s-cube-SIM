@@ -30,8 +30,8 @@ bool is_EO_solved(Cube *cube) {
 
 
 std::string solve_EO(Cube *cube, int depth) {
-    if (depth==0) return "";
     if (is_EO_solved(cube)) return " ";
+    if (depth==0) return "";
     
     for (std::string move: {"L","R","F","B","U","D"}) {
         Cube temp(*cube);

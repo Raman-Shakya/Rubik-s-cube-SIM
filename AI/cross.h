@@ -35,8 +35,8 @@ bool is_Cross_solved(Cube *cube) {
 }
 
 std::string solve_Daisy(Cube *cube, int depth) {
-    if (depth==0) return "";
     if (is_daisy_solved(cube)) return " ";
+    if (depth==0) return "";
 
     for (std::string move: {"R ","L ","U ","D ","R'","L'","U'","D'",}) {
         Cube temp(*cube);
@@ -49,8 +49,8 @@ std::string solve_Daisy(Cube *cube, int depth) {
 }
 
 std::string solve_Cross(Cube *cube, int depth) {
-    if (depth==0) return "";
     if (is_Cross_solved(cube)) return " ";
+    if (depth==0) return "";
 
     Cube temp2(*cube);
     temp2.move("R2");

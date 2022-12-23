@@ -14,7 +14,7 @@ int main() {
     set_color_palette();
     set_rotation_edge_map_data();
     
-    std::string scramble = "L D2 B R2 B2 R2 B U2 R2 B' R2 U' F2 R2 F R2 U' L D";
+    std::string scramble = "B' U' L2 B2 U2 R2 U' B2 U' R2 U R2 B' F' R' U2 L2 B L2";
     std::cout << scramble << "\n";
 
     Rubiks.scramble(scramble);
@@ -22,7 +22,7 @@ int main() {
 
     solve(&Rubiks);
 
-    int move_cnt = 0;
+    // int move_cnt = 0;
 
     // while(true) {
     //     std::string move;
@@ -31,10 +31,10 @@ int main() {
     //     Rubiks.scramble(move);
     //     Rubiks.print_cube();
     //     move_cnt++;
-    //     std::cout << (is_EO_solved(&Rubiks) ? "EO_SOLVED" : "EO_ISN't SOLVED") << std::endl;
+    //     std::cout << (is_belt_solved(&Rubiks) ? "EO_SOLVED" : "EO_ISN't SOLVED") << std::endl;
     //     if (Rubiks.is_solved()) break;
     // }
-    std::cout << "congratzzz u have solveedd thee cubeeee in " << move_cnt << "moves, take some rest now :P\n";
+    // std::cout << "congratzzz u have solveedd thee cubeeee in " << move_cnt << "moves, take some rest now :P\n";
 
     return 0;
 }
