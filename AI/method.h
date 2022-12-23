@@ -4,7 +4,7 @@
 #include "cross.h"
 #include "f2l.h"
 
-#include "Thistlethwaite_G2.h"
+// #include "Thistlethwaite_G2.h"
 #include <vector>
 
 /*
@@ -34,7 +34,7 @@ std::vector<std::string> available_moves = {"R ","L ","U ","D ","F ","B ",
 
 void solve(Cube *cube) {
     std::string solution = "";
-    // std::string temp="";
+    std::string temp="";
     
     // SOLVING EO
     solution = solve_EO(cube, 7);
@@ -42,37 +42,22 @@ void solve(Cube *cube) {
     cube->scramble(solution);
     cube->print_cube();
 
-    // To domino reduction Thistlethwaite's 52 move algo, 2nd part
-    std::string temp = solve_G2(cube, 10);
-    std::cout << "G2 soln: " << temp << "\n";
+    // // To domino reduction Thistlethwaite's 52 move algo, 2nd part
+    // std::string temp = solve_G2(cube, 10);
+    // std::cout << "G2 soln: " << temp << "\n";
+    // cube->print_cube();
+
+
+    // SOLVING DAISY
+    temp = solve_Daisy(cube, 7);
+    std::cout << "daisy soln: " << temp << "\n";
+    cube->scramble(temp);
     cube->print_cube();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // // SOLVING DAISY
-    // temp = solve_Daisy(cube, 7);
-    // cube->scramble(temp);
-    // std::cout << "Daisy soln: " << temp << "\n";
-    // cube->print_cube();
-    // solution+=temp;
-    // // SOLVING CROSS pt2
-    // temp = solve_Cross(cube, 5);
-    // cube->scramble(temp);
-    // std::cout << "Cross soln: " << temp << "\n";
-    // cube->print_cube();
+    // SOLVING CROSS pt2
+    temp = solve_Cross(cube, 5);
+    cube->scramble(temp);
+    std::cout << "Cross soln: " << temp << "\n";
+    cube->print_cube();
 
     // // solving f2l
     // temp = solve_pair_1(cube, 12);

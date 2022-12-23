@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../cube.h"
+#include <string>
 
 bool is_WY(char a) {
     return a=='W' || a=='Y';
@@ -33,22 +34,21 @@ bool is_Cross_solved(Cube *cube) {
     return false;
 }
 
-std::string solve_Daisy(Cube *cube, int depth, std::string previous="") {
+std::string solve_Daisy(Cube *cube, int depth) {
     if (depth==0) return "";
     if (is_daisy_solved(cube)) return " ";
 
     for (std::string move: {"R ","L ","U ","D ","R'","L'","U'","D'",}) {
-        if (move==previous) continue;
         Cube temp(*cube);
         temp.move(move);
-        std::string temp_soln = solve_Daisy(&temp, depth-1, move);
+        std::string temp_soln = solve_Daisy(&temp, depth-1);
         if (temp_soln.length()!=0) return move+" "+temp_soln;
     }
 
     return "";
 }
 
-std::string solve_Cross(Cube *cube, int depth, std::string previous="") {
+std::string solve_Cross(Cube *cube, int depth) {
     if (depth==0) return "";
     if (is_Cross_solved(cube)) return " ";
 
@@ -58,7 +58,7 @@ std::string solve_Cross(Cube *cube, int depth, std::string previous="") {
     for (std::string move: {"U ","U'","U2"}) {
         Cube temp(temp2);
         temp.move(move);
-        std::string temp_soln = solve_Cross(&temp, depth-1, move);
+        std::string temp_soln = solve_Cross(&temp, depth-1);
         if (temp_soln.length()!=0) return "R2 D "+move+" "+temp_soln;
     }
 
