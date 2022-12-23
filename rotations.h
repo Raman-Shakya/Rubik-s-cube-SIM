@@ -35,7 +35,7 @@ void Cube::rotate_edges(char move) {
 }
 
 void Cube::move(std::string move) {
-    if (move[0]==' ') return;
+    if (((std::string)"RLDUFB").find(move[0])==std::string::npos) return;
     if (move[1]=='\'') {
         rotate(move[0]);
         rotate(move[0]);
