@@ -42,7 +42,8 @@ int main() {
         std::cout << "scramble : " << scramble << "\n";
         Rubiks.print_cube();
         solution = solve(&Rubiks, true);
-        std::cout << "solution : \n" << solution;
+        std::cout << "scramble : " << scramble << "\n";
+        std::cout << "solution : " << solution;
         std::cout << "\nsolved in : " << count_moves(solution) << " moves\n";
 
         char next;

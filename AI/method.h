@@ -59,7 +59,7 @@ std::string solve(Cube *cube, bool show_steps) {
     solution+=temp;
 
     // SOLVING CROSS pt2
-    temp = solve_Cross(&dummy, 5);
+    temp = solve_Cross(&dummy, 6);
     dummy.scramble(temp);
     if (show_steps) {
         std::cout << "Cross soln: " << temp << "\n";
@@ -95,7 +95,7 @@ std::string solve(Cube *cube, bool show_steps) {
     solution+=temp;
 
     // solving PLL
-    temp = solve_PLL(&dummy, 3);
+    temp = solve_PLL(&dummy, 2);
     dummy.scramble(temp);
     if (show_steps) {
         std::cout << "pll soln: " << temp << "\n";
