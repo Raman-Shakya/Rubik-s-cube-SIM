@@ -5,6 +5,7 @@
 #include "cross.h"
 #include "belt.h"
 #include "f2l.h"
+#include "oll.h"
 
 #include <vector>
 
@@ -62,6 +63,12 @@ void solve(Cube *cube) {
     temp = solve_f2l(cube);
     cube->scramble(temp);
     std::cout << "f2l soln: " << temp << "\n";
+    cube->print_cube();
+
+    // solving OLL
+    temp = solve_OLL(cube, 4);
+    cube->scramble(temp);
+    std::cout << "oll soln: " << temp << "\n";
     cube->print_cube();
 
 }
