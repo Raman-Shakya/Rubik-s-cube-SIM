@@ -4,8 +4,7 @@
 
 
 bool is_belt_solved(Cube *cube) {
-    if (
-        cube->coor_is_solved(4,5) &&
+    if (cube->coor_is_solved(4,5) &&
         cube->coor_is_solved(4,6) &&
         cube->coor_is_solved(4,8) &&
         cube->coor_is_solved(4,9) &&

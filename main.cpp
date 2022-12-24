@@ -14,7 +14,7 @@ int main() {
     set_color_palette();
     set_rotation_edge_map_data();
     
-    std::string scramble = "B' U' L2 B2 U2 R2 U' B2 U' R2 U R2 B' F' R' U2 L2 B L2";
+    std::string scramble = "U' F2 U L' U D F D U2 B' U2 D2 R2 B2 R2 B D2 B L2 F L'";
     std::cout << scramble << "\n";
 
     Rubiks.scramble(scramble);

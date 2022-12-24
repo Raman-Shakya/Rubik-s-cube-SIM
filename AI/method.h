@@ -4,6 +4,7 @@
 #include "EO.h"
 #include "cross.h"
 #include "belt.h"
+#include "f2l.h"
 
 #include <vector>
 
@@ -57,5 +58,10 @@ void solve(Cube *cube) {
     std::cout << "belt soln: " << temp << "\n";
     cube->print_cube();
 
+    // solving F2L
+    temp = solve_f2l(cube);
+    cube->scramble(temp);
+    std::cout << "f2l soln: " << temp << "\n";
+    cube->print_cube();
 
 }
