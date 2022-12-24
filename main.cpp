@@ -19,15 +19,16 @@ int main() {
 
     std::cout << "THIS IS A RUBIK'S CUBE SIMULATION MADE IN C++\nBy: Raman Shakya\n\n";
 
-    bool will_play;
+    bool will_play=false;
     char temp;
 
-    std::cout << "Do you wanna play? (Y/N) : ";
-    std::cin >> temp;
+    // std::cout << "Do you wanna play? (Y/N) : ";
+    // std::cin >> temp;
     
-    will_play = temp=='Y' ? true : false;
+    // will_play = temp=='Y' ? true : false;
     
     while (1) {
+        Rubiks.reset_to_solved_state();
         std::string scramble = generate_scramble(20);
         std::string solution;
 

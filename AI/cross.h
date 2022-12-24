@@ -55,9 +55,9 @@ std::string solve_Cross(Cube *cube, int depth) {
     Cube temp2(*cube);
     temp2.move("R2");
     temp2.move("D");
-    for (std::string move: {"U ","U'","U2"}) {
+    for (std::string move: {"","U ","U'","U2"}) {
         Cube temp(temp2);
-        temp.move(move);
+        if (move!="") temp.move(move);
         std::string temp_soln = solve_Cross(&temp, depth-1);
         if (temp_soln.length()!=0) return "R2 D "+move+" "+temp_soln;
     }

@@ -18,9 +18,9 @@ bool is_corner_solved(Cube *cube) {
 }
 
 std::string solve_corner(Cube *cube, std::string alg) {
-    for (std::string setup: {"  ","U ","U'","U2"}) {
+    for (std::string setup: {"","U ","U'","U2"}) {
         Cube temp(*cube);
-        if (setup!="  ") temp.move(setup);
+        if (setup!="") temp.move(setup);
         temp.scramble(alg);
         if (is_corner_solved(&temp)) return setup;
     }
@@ -79,6 +79,7 @@ std::string solve_f2l(Cube *cube) {
             solution += setup + " " + temp_alg;
             temp2.scramble(temp_alg);
             solution += solve_f2l(&temp2);
+            break;
         }
     }
     Cube temp2(*cube);
