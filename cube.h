@@ -21,9 +21,9 @@ public:
     } 
 
     void print_cube() {
-        for (int i=0; i<12; i++) {
-            std::cout << i << " " << ((i+1)%3==0?" ":"");
-        }
+        // for (int i=0; i<12; i++) {
+        //     std::cout << i << " " << ((i+1)%3==0?" ":"");
+        // }
         std::cout << std::endl;
         for (int i=0; i<9; i++) {
             for (int j=0; j<12; j++) {
@@ -31,7 +31,8 @@ public:
                 std::cout << color_palette[grid[i][j]] << color_palette[grid[i][j]];
                 if ((j+1)%3==0) std::cout << " ";
             }
-            std::cout << " --- " << i << "\n";
+            // std::cout << " --- " << i;
+            std::cout << "\n";
             if ((i+1)%3==0) std::cout << "\n";
             // std::cout << "\n";
         }

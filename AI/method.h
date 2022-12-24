@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../cube.h"
+#include "../helper.h"
+
 #include "EO.h"
 #include "cross.h"
 #include "belt.h"
@@ -101,5 +103,5 @@ std::string solve(Cube *cube, bool show_steps) {
     }
     solution+=temp;
 
-    return solution;
+    return cleanify(solution);
 }
