@@ -75,12 +75,13 @@ std::string solve_f2l(Cube *cube) {
         Cube temp2(temp);
         temp2.move(setup);
         if (!is_corner_solved(&temp2)) {
-            std::string temp_alg = "R' D' R D R' D' R D R' D' R ";
+            std::string temp_alg = "L U2 L' D2 L U2 L' ";
             solution += setup + " " + temp_alg;
             temp2.scramble(temp_alg);
-            solution += solve_f2l(&temp2);       
+            solution += solve_f2l(&temp2);
         }
     }
     Cube temp2(*cube);
-    return solution + align_layer(&temp);
+    temp2.scramble(solution);
+    return solution + align_layer(&temp2);
 }

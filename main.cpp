@@ -14,13 +14,14 @@ int main() {
     set_color_palette();
     set_rotation_edge_map_data();
     
-    std::string scramble = "R2 D R F2 U' F' D2 L B2 L2 U R2 U' L2 F2 U2 F2 D F2 L";
+    std::string scramble = "D' B2 U2 R L B' D U2 R F2 L2 B2 L' U2 R' U2 R F2 R' D";
     std::cout << scramble << "\n";
 
     Rubiks.scramble(scramble);
     Rubiks.print_cube();
 
-    solve(&Rubiks);
+    std::cout << "scramble : " << scramble << "\n";
+    std::cout << "solution : " << solve(&Rubiks, true) << "\n";
 
     // int move_cnt = 0;
 

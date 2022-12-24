@@ -38,7 +38,7 @@ std::string solve_Daisy(Cube *cube, int depth) {
     if (is_daisy_solved(cube)) return " ";
     if (depth==0) return "";
 
-    for (std::string move: {"R ","L ","U ","D ","R'","L'","U'","D'",}) {
+    for (std::string move: {"R ","L ","U ","D ","R'","L'","U'","D'","R2","L2"}) {
         Cube temp(*cube);
         temp.move(move);
         std::string temp_soln = solve_Daisy(&temp, depth-1);

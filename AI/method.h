@@ -6,6 +6,7 @@
 #include "belt.h"
 #include "f2l.h"
 #include "oll.h"
+#include "pll.h"
 
 #include <vector>
 
@@ -33,42 +34,72 @@ std::vector<std::string> available_moves = {"R ","L ","U ","D ","F ","B ",
 
 
 
-void solve(Cube *cube) {
-    std::string temp="";
+std::string solve(Cube *cube, bool show_steps) {
+    std::string temp="", solution="";
+    Cube dummy(*cube);
     
     // SOLVING EO
-    temp = solve_EO(cube, 7);
-    std::cout << "EO soln: " << temp << "\n";
-    cube->scramble(temp);
-    cube->print_cube();
+    temp = solve_EO(&dummy, 7);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "EO soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
 
     // SOLVING DAISY
-    temp = solve_Daisy(cube, 7);
-    std::cout << "daisy soln: " << temp << "\n";
-    cube->scramble(temp);
-    cube->print_cube();
+    temp = solve_Daisy(&dummy, 7);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "daisy soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
+
     // SOLVING CROSS pt2
-    temp = solve_Cross(cube, 5);
-    cube->scramble(temp);
-    std::cout << "Cross soln: " << temp << "\n";
-    cube->print_cube();
+    temp = solve_Cross(&dummy, 5);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "Cross soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
 
     // solving Belt
-    temp = solve_Belt(cube, 5);
-    cube->scramble(temp);
-    std::cout << "belt soln: " << temp << "\n";
-    cube->print_cube();
+    temp = solve_Belt(&dummy, 5);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "belt soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
 
     // solving F2L
-    temp = solve_f2l(cube);
-    cube->scramble(temp);
-    std::cout << "f2l soln: " << temp << "\n";
-    cube->print_cube();
+    temp = solve_f2l(&dummy);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "f2l soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
 
     // solving OLL
-    temp = solve_OLL(cube, 4);
-    cube->scramble(temp);
-    std::cout << "oll soln: " << temp << "\n";
-    cube->print_cube();
+    temp = solve_OLL(&dummy, 4);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "oll soln: " << temp << "\n";
+        dummy.print_cube();
+    }
+    solution+=temp;
 
+    // solving PLL
+    temp = solve_PLL(&dummy, 3);
+    dummy.scramble(temp);
+    if (show_steps) {
+        std::cout << "pll soln: " << temp << "\n";
+        dummy.print_cube();    
+    }
+    solution+=temp;
+
+    return solution;
 }
