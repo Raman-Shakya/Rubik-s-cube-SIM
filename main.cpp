@@ -7,34 +7,73 @@
 
 #include "AI/method.h"
 
+std::string play(Cube*);
+
 int main() {
+    srand(time(NULL));
 
     Cube Rubiks;
 
     set_color_palette();
     set_rotation_edge_map_data();
+
+    std::cout << "THIS IS A RUBIK'S CUBE SIMULATION MADE IN C++\nBy: Raman Shakya\n\n";
+
+    bool will_play=false;
+    char temp;
+
+    // std::cout << "Do you wanna play? (Y/N) : ";
+    // std::cin >> temp;
     
-    std::string scramble = "F L2 U' D B' L' U L2 F' D2 B R2 D2 F' B D2 B' U2 L'";
-    std::cout << scramble << "\n";
+    // will_play = temp=='Y' ? true : false;
+    
+    while (1) {
+        Rubiks.reset_to_solved_state();
+        std::string scramble = generate_scramble(20);
+        std::string solution;
 
-    Rubiks.scramble(scramble);
-    Rubiks.print_cube();
+        if (will_play) {
+            Rubiks.scramble(scramble);
+            solution = play(&Rubiks);
+        }
 
-    solve(&Rubiks);
+        Rubiks.scramble(scramble);
 
-    int move_cnt = 0;
 
-    // while(true) {
-    //     std::string move;
-    //     std::cout << "enter move : ";
-    //     std::cin >> move;
-    //     Rubiks.scramble(move);
-    //     Rubiks.print_cube();
-    //     move_cnt++;
-    //     std::cout << (is_EO_solved(&Rubiks) ? "EO_SOLVED" : "EO_ISN't SOLVED") << std::endl;
-    //     if (Rubiks.is_solved()) break;
-    // }
-    std::cout << "congratzzz u have solveedd thee cubeeee in " << move_cnt << "moves, take some rest now :P\n";
+        std::cout << "scramble : " << scramble << "\n";
+        Rubiks.print_cube();
+        solution = solve(&Rubiks, true);
+        std::cout << "scramble : " << scramble << "\n";
+        std::cout << "solution : " << solution;
+        std::cout << "\nsolved in : " << count_moves(solution) << " moves\n";
+
+        char next;
+        std::cout << "next solution? (Y/N)";
+        std::cin >> next;
+
+        if (next=='N') break;
+
+    }
 
     return 0;
+}
+
+
+
+std::string play(Cube *cube) {
+    std::string solution="";
+    cube->print_cube();
+    while(true) {
+        std::string move;
+        std::cout << "enter move : ";
+        std::cin >> move;
+        cube->scramble(move);
+        cube->print_cube();
+        solution+=move+" ";
+        if (cube->is_solved()) break;
+    }
+    std::cout << "you have solved the cube!\n";
+    std::cout << "your solution is : \n" << solution;
+    std::cout << "you solved in : " << count_moves(solution) << " moves\n";
+    return solution;   
 }
