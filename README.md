@@ -38,15 +38,15 @@ To solve this issue, we can divide the process to different sub-groups which is 
 3. **BELT**: This is a weird part in the solve. Solving 1 F2L pair at a time was time consuming so I deviced a different method to solve belt first, To do this, I used following move configuration and depth of 5 ```init_move=<R, R', L, L'> <,D,D',D2> inverse(init_move)```
 <br>
 4. **F2L**: For F2l (First 2 Layers) I moved the D layer until I found a corner in the DFR corner and used 1 in 3 algorithms to solve it relative to the edges:
-    - if white is in bottom right: ```L' U L D' L' U' L```
-    - if white is in bottom front: ```L U2 L' D2 L U2 L'```
-    - if white is in the bottom :  ```R' D' R D R' D' R D R' D' R```
+    * if white is in bottom right: ```L' U L D' L' U' L```
+    * if white is in bottom front: ```L U2 L' D2 L U2 L'```
+    * if white is in the bottom :  ```R' D' R D R' D' R D R' D' R```
 
     in the first layer with setup moves ```<,U,U',U2>``` after solving all the bottom corners having white sticker, I checked for any in the top layer but relatively unsolved, I again used ```L U2 L' D2 L U2 L'``` algorithm to take it to bottom layer and using recursion solved the rest of the F2L.
 <br>
 5. **OLL**: For OLL (Orientation of Last Layer), as we have already solved EO, we can use sune ```R' D' R D' R' D2 R <, D, D', D2>``` at most 4 times to solve OLL.
 <br>
 6. **PLL**: For PLL (Permutation of Last Layer):
-    - use A-perm ```L2 B2 L F L' B2 L F' L <, D, D', D2>``` to solve the corners with depth of 2
-    -  use U-perms ```R' D R' D' R' D' R' D R D R2 <, D, D', D2>``` to solve the rest of the edges with depth of 3
+    * use A-perm ```L2 B2 L F L' B2 L F' L <, D, D', D2>``` to solve the corners with depth of 2
+    *  use U-perms ```R' D R' D' R' D' R' D R D R2 <, D, D', D2>``` to solve the rest of the edges with depth of 3
 ---
