@@ -2,6 +2,12 @@
 
 #include "../cube.h"
 
+/*
+    F2L: it is the state in which first 2 layers of the cube is solved
+*/
+
+
+// is there a white corner in bottom right hand (DFR) corner??
 int is_white_in_position_C(Cube *cube) {
     // 1=> white is facing right
     // 2=> white is facing front
@@ -13,11 +19,14 @@ int is_white_in_position_C(Cube *cube) {
     return 0;
 }
 
+// is corner relatively solved?
 bool is_corner_solved(Cube *cube) {
     return (cube->grid[3][5]==cube->grid[3][4]);
 }
 
+// solving corner (kinda brute-force ig)
 std::string solve_corner(Cube *cube, std::string alg) {
+    // move u layer do alg, if not solved, try again
     for (std::string setup: {"","U ","U'","U2"}) {
         Cube temp(*cube);
         if (setup!="") temp.move(setup);
@@ -27,6 +36,8 @@ std::string solve_corner(Cube *cube, std::string alg) {
     return alg;
 }
 
+
+// solves a corner
 std::string solve_bottom_corners(Cube *cube) {
     for (std::string down_layer: {" ","D ","D'","D2"}) {
         Cube temp(*cube);
@@ -52,6 +63,7 @@ std::string solve_bottom_corners(Cube *cube) {
     return "";
 }
 
+// align the first layer
 std::string align_layer(Cube *cube) {
     for (std::string setup: {"U ","U'","U2"}) {
         Cube temp3(*cube);
@@ -61,9 +73,12 @@ std::string align_layer(Cube *cube) {
     return "";
 }
 
+// main function to solve the F2L
 std::string solve_f2l(Cube *cube) {
     std::string solution;
     Cube temp(*cube);
+
+    // solve all the bottom corners first
     for (int i=0; i<4; i++) {
         std::string temp_soln = solve_bottom_corners(&temp);
         if (temp_soln=="") break;
@@ -78,11 +93,11 @@ std::string solve_f2l(Cube *cube) {
             std::string temp_alg = "L U2 L' D2 L U2 L' ";
             solution += setup + " " + temp_alg;
             temp2.scramble(temp_alg);
-            solution += solve_f2l(&temp2);
+            solution += solve_f2l(&temp2);  // using recursion :sunglasses: lol
             break;
         }
     }
     Cube temp2(*cube);
     temp2.scramble(solution);
-    return solution + align_layer(&temp2);
+    return solution + align_layer(&temp2);  // finally aligning first layer
 }

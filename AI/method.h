@@ -17,28 +17,18 @@
         0- orient all edges                 -1
         1- solve cross                      -1
         2- solve belt                       -1
-        3- solve first layer corners        -0
-        4- solve OLL                        -0
-        5- solve corners                    -0
-        6- solve edges                      -0
+        3- solve first layer corners        -1
+        4- solve OLL                        -1
+        5- solve corners                    -1
+        6- solve edges                      -1
+YEYYY CUBE SOLVEDDD!!!
 */
 
-class AI {
-public:
-private:
 
-};
-
-std::vector<std::string> available_moves = {"R ","L ","U ","D ","F ","B ",
-                                            "R'","L'","U'","D'",
-};
-
-
-
-
+// function to solve the cube by AI
 std::string solve(Cube *cube, bool show_steps) {
     std::string temp="", solution="";
-    Cube dummy(*cube);
+    Cube dummy(*cube);  // dummy cube to not overwrite the original cube
     
     // SOLVING EO
     temp = solve_EO(&dummy, 7);
@@ -103,5 +93,5 @@ std::string solve(Cube *cube, bool show_steps) {
     }
     solution+=temp;
 
-    return cleanify(solution);
+    return cleanify(solution);  // goto helper.h for more abt cleanify
 }
