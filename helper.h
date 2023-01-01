@@ -6,28 +6,28 @@
 #include <vector>
 
 
-std::map<char, std::string> color_palette;
-
+std::map<char, std::string> color_palette;      // map_obj for changing color
+char print_char = 219;      // full block ascii character code 
 
 void set_color_palette() {
-    color_palette['R'] = "\033[1;31m█\033[0m";
-    color_palette['G'] = "\033[1;32m█\033[0m";
-    color_palette['Y'] = "\033[1;33m█\033[0m";
-    color_palette['B'] = "\033[1;34m█\033[0m";
-    color_palette['W'] = "\033[1;37m█\033[0m";
-    color_palette['O'] = "\033[1;38;5;208m█\033[0m";
-    color_palette[' '] = " ";
+    color_palette['R'] = "\033[1;31m";
+    color_palette['G'] = "\033[1;32m";
+    color_palette['Y'] = "\033[1;33m";
+    color_palette['B'] = "\033[1;34m";
+    color_palette['W'] = "\033[1;37m";
+    color_palette['O'] = "\033[1;38;5;208m";
+    color_palette[' '] = "";
 }
 
 
-
+// simple swap function
 void swap(char *a, char *b) {
     char temp = *a;
     *a = *b;
     *b = temp;
 }
 
-
+// returns total moves in the solution (solved for recurring spaces)
 int count_moves(std::string solution) {
     bool space_before=false;
     int answer = 0;
@@ -44,7 +44,7 @@ int count_moves(std::string solution) {
 
 
 
-
+// 1 clockwise rotation = 1 unit
 int quarter_turns_count(char a) {
     switch (a) {
         case '\'': return -1; break;
@@ -53,10 +53,15 @@ int quarter_turns_count(char a) {
     }
 }
 
+// combines 2 move if they are performed on same face
 std::string combine(std::string a, std::string b) {
+    if (a[0]!=b[0]) return "";
+
     std::string ans = a;
-    int count = (quarter_turns_count(a[1]) + quarter_turns_count(b[1]))%4;
-    count = count>0 ? count : -count;
+    int count = (quarter_turns_count(a[1]) + quarter_turns_count(b[1]))%4;  // using math :sunglasses:
+    count = count>0 ? count : -count;   // count = abs(count)
+
+    // 1 unit = 1 clockwise turn
     if (count==0) return "";
     if (count==1) ans[1] = ' ';
     if (count==2) ans[1] = '2';
@@ -65,6 +70,14 @@ std::string combine(std::string a, std::string b) {
     return ans;
 }
 
+/*
+    this function does the following:
+        -> removes all recurring spaces
+        -> if same face moves are repeating, it merges them to one
+        -> uses recursion to solve for multiple repeated moves
+
+    # I have no idea how I got this working so sorry for no comments :')
+*/
 std::string cleanify(std::string solution) {
     int count = 0;
     std::string answer   = "",
@@ -110,13 +123,15 @@ std::string cleanify(std::string solution) {
 }
 
 
+// returns random number from [0, upper)
 int random_number(int upper) {
     return rand() % upper;
 }
 
-std::string generate_scramble(int moves) {
+// generate random scramble with argument for maximum move
+std::string generate_scramble(int max_moves) {
     std::string answer = "";
-    for (int i=0; i<moves; i++) {
+    for (int i=0; i<max_moves; i++) {
         answer += "RUDLFB"[random_number(6)];
         answer += "'2"[random_number(3)];
         answer += " ";

@@ -3,10 +3,12 @@
 #include <map>
 #include <vector>
 
-std::map<char, std::vector<std::vector<int>>> rotation_edge_map;
-std::map<char, std::vector<int>> center_coor;
-std::map<std::vector<int>, std::vector<int>> connected_coor_edge;
+std::map < char , std::vector < std::vector < int >>> rotation_edge_map;
+std::map < char , std::vector < int >> center_coor;
+std::map<std::vector < int > , std::vector< int >> connected_coor_edge;
 
+
+// just hardcoded values here nth to see here
 void set_rotation_edge_map_data() {
     rotation_edge_map['F'] = {
         {2,3, 2,4, 2,5},
@@ -68,6 +70,7 @@ void set_rotation_edge_map_data() {
     connected_coor_edge[{4,8}]={4,9};
     connected_coor_edge[{4,0}]={4,11};
 
+    // map the values to keys as well
     for (const auto& key : connected_coor_edge) {
         connected_coor_edge[key.second] = key.first;
     }
